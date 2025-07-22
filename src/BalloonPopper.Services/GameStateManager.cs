@@ -34,7 +34,8 @@ namespace BalloonPopper.Services
     public class GameStateManager(DifficultyConfig? difficultyConfig = null) : IGameStateManager
     {
         private readonly GameState _gameState = new GameState();
-        private readonly DifficultyConfig _difficultyConfig = difficultyConfig ?? new DifficultyConfig();
+        private readonly DifficultyConfig _difficultyConfig =
+            difficultyConfig ?? new DifficultyConfig();
         private DateTime _lastComboTime = DateTime.MinValue;
         private readonly TimeSpan _comboTimeWindow = TimeSpan.FromSeconds(2.0);
 
@@ -52,7 +53,7 @@ namespace BalloonPopper.Services
             _gameState.ResetForNewGame();
             _gameState.Status = GameStatus.Playing;
             _lastComboTime = DateTime.MinValue;
-            
+
             OnGameStateChanged();
             OnScoreChanged();
             OnLevelChanged();
@@ -100,7 +101,8 @@ namespace BalloonPopper.Services
                 return;
 
             var baseScore = balloon.Pop();
-            if (baseScore <= 0) return;
+            if (baseScore <= 0)
+                return;
 
             // Handle special balloon effects
             HandleSpecialBalloonEffects(balloon);
@@ -136,7 +138,7 @@ namespace BalloonPopper.Services
                 return;
 
             _gameState.BalloonsEscaped++;
-            
+
             // Reset combo on balloon escape
             _gameState.Combo = 0;
             _lastComboTime = DateTime.MinValue;
@@ -164,7 +166,7 @@ namespace BalloonPopper.Services
                 PowerUpType.SlowMotion => _difficultyConfig.SlowMotionDuration,
                 PowerUpType.ExtraLife => 0, // Instant effect
                 PowerUpType.BombBlast => 0, // Instant effect
-                _ => 0
+                _ => 0,
             };
 
             _gameState.ActivePowerUp = powerUp;
@@ -177,7 +179,7 @@ namespace BalloonPopper.Services
         public void CheckLevelProgress()
         {
             var requiredBalloons = _difficultyConfig.GetRequiredBalloonsForLevel(_gameState.Level);
-            
+
             if (_gameState.BalloonsPopped >= requiredBalloons)
             {
                 CompleteLevelAndAdvance();
@@ -236,7 +238,9 @@ namespace BalloonPopper.Services
                     break;
                 case PowerUpType.TimeFreeze:
                     _gameState.IsTimeFrozen = true;
-                    _gameState.TimeFreezeExpiry = DateTime.Now.AddSeconds(_difficultyConfig.TimeFreezeDuration);
+                    _gameState.TimeFreezeExpiry = DateTime.Now.AddSeconds(
+                        _difficultyConfig.TimeFreezeDuration
+                    );
                     break;
                 case PowerUpType.ExtraLife:
                     _gameState.Lives++;
@@ -252,22 +256,26 @@ namespace BalloonPopper.Services
         {
             _gameState.Status = GameStatus.LevelComplete;
             LevelComplete?.Invoke(this, EventArgs.Empty);
-            
+
             // Auto-advance after a brief pause
-            Task.Delay(2000).ContinueWith(_ =>
-            {
-                if (_gameState.Status == GameStatus.LevelComplete)
+            Task.Delay(2000)
+                .ContinueWith(_ =>
                 {
-                    NextLevel();
-                    _gameState.Status = GameStatus.Playing;
-                    OnGameStateChanged();
-                }
-            });
+                    if (_gameState.Status == GameStatus.LevelComplete)
+                    {
+                        NextLevel();
+                        _gameState.Status = GameStatus.Playing;
+                        OnGameStateChanged();
+                    }
+                });
         }
 
         private void OnGameStateChanged() => GameStateChanged?.Invoke(this, _gameState);
+
         private void OnScoreChanged() => ScoreChanged?.Invoke(this, _gameState.Score);
+
         private void OnLevelChanged() => LevelChanged?.Invoke(this, _gameState.Level);
+
         private void OnLivesChanged() => LivesChanged?.Invoke(this, _gameState.Lives);
     }
 }

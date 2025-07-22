@@ -37,7 +37,7 @@ namespace BalloonPopper.Services
         private readonly IBalloonInteractionService _interactionService;
         private readonly IDifficultyManager _difficultyManager;
         private readonly IScoringService _scoringService;
-        
+
         private readonly ObservableCollection<Balloon> _activeBalloons;
         private readonly System.Timers.Timer _gameTimer;
         private DateTime _lastUpdateTime;
@@ -59,13 +59,19 @@ namespace BalloonPopper.Services
             IGameStateManager gameStateManager,
             IBalloonInteractionService interactionService,
             IDifficultyManager difficultyManager,
-            IScoringService scoringService)
+            IScoringService scoringService
+        )
         {
-            _balloonSpawner = balloonSpawner ?? throw new ArgumentNullException(nameof(balloonSpawner));
-            _gameStateManager = gameStateManager ?? throw new ArgumentNullException(nameof(gameStateManager));
-            _interactionService = interactionService ?? throw new ArgumentNullException(nameof(interactionService));
-            _difficultyManager = difficultyManager ?? throw new ArgumentNullException(nameof(difficultyManager));
-            _scoringService = scoringService ?? throw new ArgumentNullException(nameof(scoringService));
+            _balloonSpawner =
+                balloonSpawner ?? throw new ArgumentNullException(nameof(balloonSpawner));
+            _gameStateManager =
+                gameStateManager ?? throw new ArgumentNullException(nameof(gameStateManager));
+            _interactionService =
+                interactionService ?? throw new ArgumentNullException(nameof(interactionService));
+            _difficultyManager =
+                difficultyManager ?? throw new ArgumentNullException(nameof(difficultyManager));
+            _scoringService =
+                scoringService ?? throw new ArgumentNullException(nameof(scoringService));
 
             _activeBalloons = new ObservableCollection<Balloon>();
             _gameTimer = new System.Timers.Timer(16); // ~60 FPS
@@ -78,13 +84,13 @@ namespace BalloonPopper.Services
         public void StartGame(double gameAreaWidth, double gameAreaHeight)
         {
             SetGameAreaSize(gameAreaWidth, gameAreaHeight);
-            
+
             _gameStateManager.StartNewGame();
             _activeBalloons.Clear();
-            
+
             var spawnConfig = _difficultyManager.GetSpawnConfigForLevel(1);
             _balloonSpawner.StartSpawning(spawnConfig, _gameAreaWidth);
-            
+
             _isRunning = true;
             _lastUpdateTime = DateTime.Now;
             _gameTimer.Start();
@@ -92,7 +98,8 @@ namespace BalloonPopper.Services
 
         public void PauseGame()
         {
-            if (!_isRunning) return;
+            if (!_isRunning)
+                return;
 
             _gameStateManager.PauseGame();
             _balloonSpawner.StopSpawning();
@@ -102,13 +109,14 @@ namespace BalloonPopper.Services
 
         public void ResumeGame()
         {
-            if (_isRunning || CurrentGameState.Status != GameStatus.Paused) return;
+            if (_isRunning || CurrentGameState.Status != GameStatus.Paused)
+                return;
 
             _gameStateManager.ResumeGame();
-            
+
             var spawnConfig = _difficultyManager.GetSpawnConfigForLevel(CurrentGameState.Level);
             _balloonSpawner.StartSpawning(spawnConfig, _gameAreaWidth);
-            
+
             _isRunning = true;
             _lastUpdateTime = DateTime.Now;
             _gameTimer.Start();
@@ -130,7 +138,8 @@ namespace BalloonPopper.Services
 
             // Find the topmost balloon at the tap location
             var tappedBalloon = FindBalloonAtLocation(tapLocation);
-            if (tappedBalloon == null) return;
+            if (tappedBalloon == null)
+                return;
 
             // Handle special balloon types
             if (tappedBalloon.Type == BalloonType.Bomb)
@@ -153,16 +162,16 @@ namespace BalloonPopper.Services
                 return;
 
             var adjustedDeltaTime = CurrentGameState.IsTimeFrozen ? deltaTime * 0.1 : deltaTime;
-            
+
             // Update game time
             _gameStateManager.UpdateGameTime(TimeSpan.FromSeconds(deltaTime));
-            
+
             // Update balloon positions
             UpdateBalloonPositions(adjustedDeltaTime);
-            
+
             // Remove balloons that should be removed
             RemoveExpiredBalloons();
-            
+
             // Update difficulty if needed
             UpdateDifficultyForCurrentLevel();
         }
@@ -225,7 +234,7 @@ namespace BalloonPopper.Services
         private void OnBombExploded(object? sender, BombExplosionEventArgs e)
         {
             BombExploded?.Invoke(this, e);
-            
+
             // Process all affected balloons
             foreach (var balloon in e.AffectedBalloons)
             {
@@ -241,8 +250,9 @@ namespace BalloonPopper.Services
         private Balloon? FindBalloonAtLocation(Point location)
         {
             // Find the first (topmost) balloon that contains the tap location
-            return _activeBalloons.FirstOrDefault(b => 
-                !b.IsPopped && _interactionService.IsPointInsideBalloon(location, b));
+            return _activeBalloons.FirstOrDefault(b =>
+                !b.IsPopped && _interactionService.IsPointInsideBalloon(location, b)
+            );
         }
 
         private void ProcessBombExplosion(Balloon bombBalloon)
@@ -264,9 +274,7 @@ namespace BalloonPopper.Services
 
         private void RemoveExpiredBalloons()
         {
-            var balloonsToRemove = _activeBalloons
-                .Where(b => b.ShouldBeRemoved)
-                .ToList();
+            var balloonsToRemove = _activeBalloons.Where(b => b.ShouldBeRemoved).ToList();
 
             foreach (var balloon in balloonsToRemove)
             {

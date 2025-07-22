@@ -35,15 +35,8 @@ namespace BalloonPopper.Maui
 #endif
 
             // Existing services
-            builder.Services.AddSingleton<ProjectRepository>();
-            builder.Services.AddSingleton<TaskRepository>();
-            builder.Services.AddSingleton<CategoryRepository>();
-            builder.Services.AddSingleton<TagRepository>();
-            builder.Services.AddSingleton<SeedDataService>();
             builder.Services.AddSingleton<ModalErrorHandler>();
             builder.Services.AddSingleton<MainPageModel>();
-            builder.Services.AddSingleton<ProjectListPageModel>();
-            builder.Services.AddSingleton<ManageMetaPageModel>();
 
             // Game services following SOLID principles with dependency injection
             builder.Services.AddSingleton<BalloonSpawnConfig>();
@@ -55,8 +48,6 @@ namespace BalloonPopper.Maui
             builder.Services.AddSingleton<IScoringService, ScoringService>();
             builder.Services.AddSingleton<IGameEngine, GameEngine>();
 
-            builder.Services.AddTransientWithShellRoute<ProjectDetailPage, ProjectDetailPageModel>("project");
-            builder.Services.AddTransientWithShellRoute<TaskDetailPage, TaskDetailPageModel>("task");
 
             return builder.Build();
         }
