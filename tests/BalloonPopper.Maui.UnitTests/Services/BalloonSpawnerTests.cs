@@ -1,6 +1,6 @@
-using FluentAssertions;
 using BalloonPopper.Models;
 using BalloonPopper.Services;
+using FluentAssertions;
 
 namespace BalloonPopper.Maui.UnitTests.Services
 {
@@ -20,7 +20,7 @@ namespace BalloonPopper.Maui.UnitTests.Services
                 BaseSpeed = 100.0,
                 BaseSize = 50.0,
                 BasePoints = 10,
-                LifeSpan = 5.0
+                LifeSpan = 5.0,
             };
         }
 
@@ -82,7 +82,7 @@ namespace BalloonPopper.Maui.UnitTests.Services
             // Arrange
             var balloonSpawned = false;
             Balloon? spawnedBalloon = null;
-            
+
             _spawner.BalloonSpawned += (sender, balloon) =>
             {
                 balloonSpawned = true;

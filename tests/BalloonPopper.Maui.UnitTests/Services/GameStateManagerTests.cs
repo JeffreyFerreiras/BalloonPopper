@@ -202,8 +202,7 @@ public class GameStateManagerTests
     {
         // Arrange
         _gameStateManager.StartNewGame();
-        _gameStateManager.CurrentState.BalloonsPopped =
-            _difficultyConfig.BalloonsToAdvanceLevel;
+        _gameStateManager.CurrentState.BalloonsPopped = _difficultyConfig.BalloonsToAdvanceLevel;
         var levelCompleteFired = false;
         _gameStateManager.LevelComplete += (s, e) => levelCompleteFired = true;
 
