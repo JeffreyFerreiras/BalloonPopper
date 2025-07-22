@@ -1,23 +1,16 @@
 #nullable disable
-using BalloonPopper.Maui.Data;
 using BalloonPopper.Maui.Models;
-using BalloonPopper.Maui.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BalloonPopper.Maui.PageModels
 {
-    public partial class ProjectListPageModel : ObservableObject
+    public partial class ProjectListPageModel(ProjectRepository projectRepository) : ObservableObject
     {
-        private readonly ProjectRepository _projectRepository;
+        private readonly ProjectRepository _projectRepository = projectRepository;
 
         [ObservableProperty]
         private List<Project> _projects = [];
-
-        public ProjectListPageModel(ProjectRepository projectRepository)
-        {
-            _projectRepository = projectRepository;
-        }
 
         [RelayCommand]
         private async Task Appearing()

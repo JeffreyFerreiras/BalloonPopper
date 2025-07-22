@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
+using BalloonPopper.Models;
+using BalloonPopper.Services;
 
 namespace BalloonPopper.Maui
 {
@@ -32,6 +34,7 @@ namespace BalloonPopper.Maui
     		builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
 
+            // Existing services
             builder.Services.AddSingleton<ProjectRepository>();
             builder.Services.AddSingleton<TaskRepository>();
             builder.Services.AddSingleton<CategoryRepository>();
@@ -41,6 +44,16 @@ namespace BalloonPopper.Maui
             builder.Services.AddSingleton<MainPageModel>();
             builder.Services.AddSingleton<ProjectListPageModel>();
             builder.Services.AddSingleton<ManageMetaPageModel>();
+
+            // Game services following SOLID principles with dependency injection
+            builder.Services.AddSingleton<BalloonSpawnConfig>();
+            builder.Services.AddSingleton<DifficultyConfig>();
+            builder.Services.AddSingleton<IBalloonSpawner, BalloonSpawner>();
+            builder.Services.AddSingleton<IGameStateManager, GameStateManager>();
+            builder.Services.AddSingleton<IBalloonInteractionService, BalloonInteractionService>();
+            builder.Services.AddSingleton<IDifficultyManager, DifficultyManager>();
+            builder.Services.AddSingleton<IScoringService, ScoringService>();
+            builder.Services.AddSingleton<IGameEngine, GameEngine>();
 
             builder.Services.AddTransientWithShellRoute<ProjectDetailPage, ProjectDetailPageModel>("project");
             builder.Services.AddTransientWithShellRoute<TaskDetailPage, TaskDetailPageModel>("task");

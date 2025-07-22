@@ -1,19 +1,17 @@
-using BalloonPopper.Maui.Data;
 using BalloonPopper.Maui.Models;
-using BalloonPopper.Maui.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BalloonPopper.Maui.PageModels
 {
-    public partial class TaskDetailPageModel : ObservableObject, IQueryAttributable
+    public partial class TaskDetailPageModel(ProjectRepository projectRepository, TaskRepository taskRepository, ModalErrorHandler errorHandler) : ObservableObject, IQueryAttributable
     {
         public const string ProjectQueryKey = "project";
         private ProjectTask? _task;
         private bool _canDelete;
-        private readonly ProjectRepository _projectRepository;
-        private readonly TaskRepository _taskRepository;
-        private readonly ModalErrorHandler _errorHandler;
+        private readonly ProjectRepository _projectRepository = projectRepository;
+        private readonly TaskRepository _taskRepository = taskRepository;
+        private readonly ModalErrorHandler _errorHandler = errorHandler;
 
         [ObservableProperty]
         private string _title = string.Empty;
@@ -33,13 +31,6 @@ namespace BalloonPopper.Maui.PageModels
 
         [ObservableProperty]
         private bool _isExistingProject;
-
-        public TaskDetailPageModel(ProjectRepository projectRepository, TaskRepository taskRepository, ModalErrorHandler errorHandler)
-        {
-            _projectRepository = projectRepository;
-            _taskRepository = taskRepository;
-            _errorHandler = errorHandler;
-        }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {

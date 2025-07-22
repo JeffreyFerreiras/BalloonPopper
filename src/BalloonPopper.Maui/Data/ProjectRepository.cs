@@ -7,25 +7,18 @@ namespace BalloonPopper.Maui.Data
     /// <summary>
     /// Repository class for managing projects in the database.
     /// </summary>
-    public class ProjectRepository
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="ProjectRepository"/> class.
+    /// </remarks>
+    /// <param name="taskRepository">The task repository instance.</param>
+    /// <param name="tagRepository">The tag repository instance.</param>
+    /// <param name="logger">The logger instance.</param>
+    public class ProjectRepository(TaskRepository taskRepository, TagRepository tagRepository, ILogger<ProjectRepository> logger)
     {
         private bool _hasBeenInitialized = false;
-        private readonly ILogger _logger;
-        private readonly TaskRepository _taskRepository;
-        private readonly TagRepository _tagRepository;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectRepository"/> class.
-        /// </summary>
-        /// <param name="taskRepository">The task repository instance.</param>
-        /// <param name="tagRepository">The tag repository instance.</param>
-        /// <param name="logger">The logger instance.</param>
-        public ProjectRepository(TaskRepository taskRepository, TagRepository tagRepository, ILogger<ProjectRepository> logger)
-        {
-            _taskRepository = taskRepository;
-            _tagRepository = tagRepository;
-            _logger = logger;
-        }
+        private readonly ILogger _logger = logger;
+        private readonly TaskRepository _taskRepository = taskRepository;
+        private readonly TagRepository _tagRepository = tagRepository;
 
         /// <summary>
         /// Initializes the database connection and creates the Project table if it does not exist.

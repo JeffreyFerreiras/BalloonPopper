@@ -1,5 +1,3 @@
-using BalloonPopper.Maui.Models;
-
 namespace BalloonPopper.Maui.Pages
 {
     public partial class ProjectDetailPage : ContentPage

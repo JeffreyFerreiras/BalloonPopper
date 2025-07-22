@@ -4,23 +4,14 @@ using Microsoft.Extensions.Logging;
 
 namespace BalloonPopper.Maui.Data
 {
-    public class SeedDataService
+    public class SeedDataService(ProjectRepository projectRepository, TaskRepository taskRepository, TagRepository tagRepository, CategoryRepository categoryRepository, ILogger<SeedDataService> logger)
     {
-        private readonly ProjectRepository _projectRepository;
-        private readonly TaskRepository _taskRepository;
-        private readonly TagRepository _tagRepository;
-        private readonly CategoryRepository _categoryRepository;
+        private readonly ProjectRepository _projectRepository = projectRepository;
+        private readonly TaskRepository _taskRepository = taskRepository;
+        private readonly TagRepository _tagRepository = tagRepository;
+        private readonly CategoryRepository _categoryRepository = categoryRepository;
         private readonly string _seedDataFilePath = "SeedData.json";
-        private readonly ILogger<SeedDataService> _logger;
-
-        public SeedDataService(ProjectRepository projectRepository, TaskRepository taskRepository, TagRepository tagRepository, CategoryRepository categoryRepository, ILogger<SeedDataService> logger)
-        {
-            _projectRepository = projectRepository;
-            _taskRepository = taskRepository;
-            _tagRepository = tagRepository;
-            _categoryRepository = categoryRepository;
-            _logger = logger;
-        }
+        private readonly ILogger<SeedDataService> _logger = logger;
 
         public async Task LoadSeedDataAsync()
         {

@@ -1,7 +1,4 @@
-﻿using BalloonPopper.Maui.Models;
-using BalloonPopper.Maui.PageModels;
-
-namespace BalloonPopper.Maui.Pages
+﻿namespace BalloonPopper.Maui.Pages
 {
     public partial class MainPage : ContentPage
     {

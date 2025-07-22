@@ -16,7 +16,7 @@
 
 ### Alice Bot
 
-* [ ] Set up initial .NET MAUI project structure
+* [x] Set up initial .NET MAUI project structure
 * [ ] Implement game navigation (menus, game modes, settings)
 * [ ] Configure build settings for iOS deployment
 * [ ] Ensure SOLID principles and clean architecture

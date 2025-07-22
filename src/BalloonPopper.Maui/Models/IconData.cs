@@ -1,5 +1,3 @@
-using System;
-
 namespace BalloonPopper.Maui.Models
 {
     public class IconData

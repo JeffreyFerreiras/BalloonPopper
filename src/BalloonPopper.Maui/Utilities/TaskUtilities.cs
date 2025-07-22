@@ -1,5 +1,3 @@
-using BalloonPopper.Maui.Services;
-
 namespace BalloonPopper.Maui.Utilities
 {
     /// <summary>
@@ -12,7 +10,10 @@ namespace BalloonPopper.Maui.Utilities
         /// </summary>
         /// <param name="task">Task to Fire and Forget.</param>
         /// <param name="handler">Error Handler.</param>
-        public static async void FireAndForgetSafeAsync(this Task task, IErrorHandler? handler = null)
+        public static async void FireAndForgetSafeAsync(
+            this Task task,
+            IErrorHandler? handler = null
+        )
         {
             try
             {
