@@ -1,8 +1,7 @@
-﻿using CommunityToolkit.Maui;
+﻿using BalloonPopper.Models;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
-using BalloonPopper.Models;
-using BalloonPopper.Services;
 
 namespace BalloonPopper.Maui
 {
@@ -18,7 +17,10 @@ namespace BalloonPopper.Maui
                 .ConfigureMauiHandlers(handlers =>
                 {
 #if IOS || MACCATALYST
-    				handlers.AddHandler<Microsoft.Maui.Controls.CollectionView, Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
+                    handlers.AddHandler<
+                        Microsoft.Maui.Controls.CollectionView,
+                        Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2
+                    >();
 #endif
                 })
                 .ConfigureFonts(fonts =>
@@ -30,24 +32,40 @@ namespace BalloonPopper.Maui
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
-    		builder.Services.AddLogging(configure => configure.AddDebug());
+            builder.Logging.AddDebug();
+            builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
 
             // Existing services
             builder.Services.AddSingleton<ModalErrorHandler>();
-            builder.Services.AddSingleton<MainPageModel>();
 
-            // Game services following SOLID principles with dependency injection
+            // Page Models
+            builder.Services.AddTransient<MainPageModel>();
+            builder.Services.AddTransient<MenuPageModel>();
+            builder.Services.AddTransient<GameModesPageModel>();
+            builder.Services.AddTransient<SettingsPageModel>();
+            builder.Services.AddTransient<GamePageModel>();
+
+            // Pages
+            builder.Services.AddTransient<Pages.MainPage>();
+            builder.Services.AddTransient<Pages.MenuPage>();
+            builder.Services.AddTransient<Pages.GameModesPage>();
+            builder.Services.AddTransient<Pages.SettingsPage>();
+            builder.Services.AddTransient<Pages.GamePage>();
+
+            // Game model configuration
             builder.Services.AddSingleton<BalloonSpawnConfig>();
             builder.Services.AddSingleton<DifficultyConfig>();
-            builder.Services.AddSingleton<IBalloonSpawner, BalloonSpawner>();
-            builder.Services.AddSingleton<IGameStateManager, GameStateManager>();
-            builder.Services.AddSingleton<IBalloonInteractionService, BalloonInteractionService>();
-            builder.Services.AddSingleton<IDifficultyManager, DifficultyManager>();
-            builder.Services.AddSingleton<IScoringService, ScoringService>();
-            builder.Services.AddSingleton<IGameEngine, GameEngine>();
 
+            // Register interfaces with concrete implementations (Brian will implement these)
+            // builder.Services.AddSingleton<IBalloonSpawner, BalloonSpawner>();
+            // builder.Services.AddSingleton<IGameStateService, GameStateManager>();
+            // builder.Services.AddSingleton<IBalloonInteractionService, BalloonInteractionService>();
+            // builder.Services.AddSingleton<IDifficultyManager, DifficultyManager>();
+            // builder.Services.AddSingleton<IGameEngine, GameEngine>();
+
+            // Ad service placeholder (David will implement)
+            // builder.Services.AddSingleton<IAdService, AdService>();
 
             return builder.Build();
         }

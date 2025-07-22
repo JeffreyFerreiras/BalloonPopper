@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BalloonPopper.Maui.Pages.GameModesPage"
+             Title="Game Modes"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+            <!-- Header -->
+            <Label Text="🏆 Choose Your Challenge"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,20,0,30" />
+
+            <!-- Classic Mode -->
+            <Frame BackgroundColor="ForestGreen" 
+                   CornerRadius="15" 
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="🎈 Classic Mode"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Pop balloons as they appear. Get higher scores with faster pops!"
+                           FontSize="14"
+                           TextColor="LightGray"
+                           Margin="0,5,0,10" />
+                    <Button Text="Play Classic"
+                            BackgroundColor="DarkGreen"
+                            TextColor="White"
+                            CornerRadius="10"
+                            x:Name="ClassicModeButton"
+                            Clicked="OnClassicModeClicked" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Time Attack Mode -->
+            <Frame BackgroundColor="DarkOrange" 
+                   CornerRadius="15" 
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="⏰ Time Attack"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Pop as many balloons as possible in 60 seconds!"
+                           FontSize="14"
+                           TextColor="LightGray"
+                           Margin="0,5,0,10" />
+                    <Button Text="Start Time Attack"
+                            BackgroundColor="Red"
+                            TextColor="White"
+                            CornerRadius="10"
+                            x:Name="TimeAttackButton"
+                            Clicked="OnTimeAttackClicked" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Endless Mode -->
+            <Frame BackgroundColor="MediumPurple" 
+                   CornerRadius="15" 
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="∞ Endless Mode"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Keep popping until you miss too many balloons!"
+                           FontSize="14"
+                           TextColor="LightGray"
+                           Margin="0,5,0,10" />
+                    <Button Text="Go Endless"
+                            BackgroundColor="DarkMagenta"
+                            TextColor="White"
+                            CornerRadius="10"
+                            x:Name="EndlessModeButton"
+                            Clicked="OnEndlessModeClicked" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Precision Mode -->
+            <Frame BackgroundColor="SteelBlue" 
+                   CornerRadius="15" 
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="🎯 Precision Mode"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Only special balloons count. Miss one and it's game over!"
+                           FontSize="14"
+                           TextColor="LightGray"
+                           Margin="0,5,0,10" />
+                    <Button Text="Test Precision"
+                            BackgroundColor="DarkSlateBlue"
+                            TextColor="White"
+                            CornerRadius="10"
+                            x:Name="PrecisionModeButton"
+                            Clicked="OnPrecisionModeClicked" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Back Button -->
+            <Button Text="⬅️ Back to Menu"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Margin="0,20,0,0"
+                    x:Name="BackButton"
+                    Clicked="OnBackClicked" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

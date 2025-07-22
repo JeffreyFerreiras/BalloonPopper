@@ -9,6 +9,9 @@ namespace BalloonPopper.Maui
         public AppShell()
         {
             InitializeComponent();
+
+            // Set the default startup page to MenuPage
+            Shell.Current.GoToAsync("//MenuPage");
         }
     }
 }
