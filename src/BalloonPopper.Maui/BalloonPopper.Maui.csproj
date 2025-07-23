@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))"
-      >$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks
-    >
+    <TargetFrameworks>net9.0-ios;</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
     <!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
     <!-- Note for MacCatalyst:
@@ -29,49 +27,20 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
     <!-- iOS Specific Settings -->
-    <CodesignKey
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"
-      >iPhone Developer</CodesignKey
-    >
+    <CodesignKey Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">iPhone Developer</CodesignKey>
     <CodesignProvision Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'" />
-    <ProvisioningType
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"
-      >automatic</ProvisioningType
-    >
-    <UseInterpreter
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"
-      >false</UseInterpreter
-    >
+    <ProvisioningType Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">automatic</ProvisioningType>
+    <UseInterpreter Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">false</UseInterpreter>
     <!-- Performance optimizations -->
-    <MtouchLink Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"
-      >SdkOnly</MtouchLink
-    >
+    <MtouchLink Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">SdkOnly</MtouchLink>
     <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
     <WindowsPackageType>None</WindowsPackageType>
-    <SupportedOSPlatformVersion
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"
-      >15.0</SupportedOSPlatformVersion
-    >
-    <SupportedOSPlatformVersion
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'"
-      >15.0</SupportedOSPlatformVersion
-    >
-    <SupportedOSPlatformVersion
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'"
-      >21.0</SupportedOSPlatformVersion
-    >
-    <SupportedOSPlatformVersion
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'"
-      >10.0.17763.0</SupportedOSPlatformVersion
-    >
-    <TargetPlatformMinVersion
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'"
-      >10.0.17763.0</TargetPlatformMinVersion
-    >
-    <SupportedOSPlatformVersion
-      Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'"
-      >6.5</SupportedOSPlatformVersion
-    >
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
     <!-- Minimal resources for blank page -->
@@ -91,5 +60,10 @@
     <ProjectReference Include="..\BalloonPopper.Models\BalloonPopper.Models.csproj" />
     <ProjectReference Include="..\BalloonPopper.Services\BalloonPopper.Services.csproj" />
     <ProjectReference Include="..\BalloonPopper.Services.Abstractions\BalloonPopper.Services.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Resources\Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 </Project>
