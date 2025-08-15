@@ -57,12 +57,14 @@ namespace BalloonPopper.Maui
             builder.Services.AddSingleton<BalloonSpawnConfig>();
             builder.Services.AddSingleton<DifficultyConfig>();
 
-            // Register interfaces with concrete implementations (Brian will implement these)
-            // builder.Services.AddSingleton<IBalloonSpawner, BalloonSpawner>();
-            // builder.Services.AddSingleton<IGameStateService, GameStateManager>();
-            // builder.Services.AddSingleton<IBalloonInteractionService, BalloonInteractionService>();
-            // builder.Services.AddSingleton<IDifficultyManager, DifficultyManager>();
-            // builder.Services.AddSingleton<IGameEngine, GameEngine>();
+            // Register Abstractions-based services
+            builder.Services.AddSingleton<BalloonPopper.Services.Abstractions.IGameStateService, BalloonPopper.Services.AbstractionsImpl.GameStateService>();
+            builder.Services.AddSingleton<BalloonPopper.Services.Abstractions.IBalloonSpawner>(sp =>
+                new BalloonPopper.Services.AbstractionsImpl.BalloonSpawnerAbstractionsImpl(new BalloonPopper.Services.BalloonSpawner())
+            );
+            builder.Services.AddSingleton<BalloonPopper.Services.Abstractions.IBalloonInteractionService, BalloonPopper.Services.AbstractionsImpl.BalloonInteractionServiceAdapter>();
+            builder.Services.AddSingleton<BalloonPopper.Services.Abstractions.IDifficultyManager, BalloonPopper.Services.AbstractionsImpl.DifficultyManagerAdapter>();
+            builder.Services.AddSingleton<BalloonPopper.Services.Abstractions.IGameEngine, BalloonPopper.Services.SimpleGameEngine>();
 
             // Ad service placeholder (David will implement)
             // builder.Services.AddSingleton<IAdService, AdService>();

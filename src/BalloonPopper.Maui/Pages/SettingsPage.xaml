@@ -1,176 +1,189 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="BalloonPopper.Maui.Pages.SettingsPage"
              Title="Settings"
+             ios:Page.UseSafeArea="True"
              BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="20">
-            
-            <!-- Header -->
-            <Label Text="⚙️ Game Settings"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="White"
-                   Margin="0,20,0,30" />
-
-            <!-- Audio Settings -->
-            <Frame BackgroundColor="DarkSlateBlue" 
-                   CornerRadius="15" 
-                   HasShadow="True">
-                <StackLayout Spacing="15">
-                    <Label Text="🔊 Audio Settings"
-                           FontSize="18"
+        <Grid Padding="{OnIdiom Phone='16,12', Tablet='24,16', Desktop='24,16'}">
+            <ContentView HorizontalOptions="CenterAndExpand"
+                         MaximumWidthRequest="{OnIdiom Phone=420, Tablet=700, Desktop=800}">
+                <StackLayout Spacing="20">
+                    
+                    <!-- Header -->
+                    <Label Text="⚙️ Game Settings"
+                           FontSize="28"
                            FontAttributes="Bold"
-                           TextColor="White" />
-                    
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Sound Effects"
-                               TextColor="White"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand" />
-                        <Switch x:Name="SoundEffectsSwitch"
-                                IsToggled="{Binding SoundEffectsEnabled}"
-                                OnColor="LimeGreen"
-                                ThumbColor="White" />
-                    </StackLayout>
-                    
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Background Music"
-                               TextColor="White"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand" />
-                        <Switch x:Name="BackgroundMusicSwitch"
-                                IsToggled="{Binding BackgroundMusicEnabled}"
-                                OnColor="LimeGreen"
-                                ThumbColor="White" />
-                    </StackLayout>
-                    
-                    <StackLayout>
-                        <Label Text="Master Volume"
-                               TextColor="White" />
-                        <Slider x:Name="VolumeSlider"
-                                Value="{Binding MasterVolume}"
-                                Minimum="0"
-                                Maximum="100"
-                                MinimumTrackColor="LimeGreen"
-                                MaximumTrackColor="Gray"
-                                ThumbColor="White" />
-                        <Label Text="{Binding MasterVolume, StringFormat='{0:F0}%'}"
-                               TextColor="LightGray"
-                               FontSize="12"
-                               HorizontalOptions="Center" />
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
+                           HorizontalOptions="Center"
+                           TextColor="White"
+                           Margin="0,20,0,30" />
 
-            <!-- Game Settings -->
-            <Frame BackgroundColor="DarkGreen" 
-                   CornerRadius="15" 
-                   HasShadow="True">
-                <StackLayout Spacing="15">
-                    <Label Text="🎮 Game Settings"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="White" />
-                    
-                    <StackLayout>
-                        <Label Text="Difficulty Level"
-                               TextColor="White" />
-                        <Picker x:Name="DifficultyPicker"
-                                SelectedItem="{Binding SelectedDifficulty}"
-                                TextColor="White"
-                                BackgroundColor="ForestGreen">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Easy</x:String>
-                                    <x:String>Medium</x:String>
-                                    <x:String>Hard</x:String>
-                                    <x:String>Expert</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
-                    </StackLayout>
-                    
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Haptic Feedback"
-                               TextColor="White"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand" />
-                        <Switch x:Name="HapticFeedbackSwitch"
-                                IsToggled="{Binding HapticFeedbackEnabled}"
-                                OnColor="LimeGreen"
-                                ThumbColor="White" />
-                    </StackLayout>
-                    
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Show FPS Counter"
-                               TextColor="White"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand" />
-                        <Switch x:Name="ShowFpsSwitch"
-                                IsToggled="{Binding ShowFpsCounter}"
-                                OnColor="LimeGreen"
-                                ThumbColor="White" />
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
+                    <!-- Audio Settings -->
+                    <Frame BackgroundColor="DarkSlateBlue" 
+                           CornerRadius="15" 
+                           HasShadow="True">
+                        <StackLayout Spacing="15">
+                            <Label Text="🔊 Audio Settings"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Sound Effects"
+                                       TextColor="White"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Switch x:Name="SoundEffectsSwitch"
+                                        IsToggled="{Binding SoundEffectsEnabled}"
+                                        OnColor="LimeGreen"
+                                        ThumbColor="White" />
+                            </StackLayout>
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Background Music"
+                                       TextColor="White"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Switch x:Name="BackgroundMusicSwitch"
+                                        IsToggled="{Binding BackgroundMusicEnabled}"
+                                        OnColor="LimeGreen"
+                                        ThumbColor="White" />
+                            </StackLayout>
+                            
+                            <StackLayout>
+                                <Label Text="Master Volume"
+                                       TextColor="White" />
+                                <Slider x:Name="VolumeSlider"
+                                        Value="{Binding MasterVolume}"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        MinimumTrackColor="LimeGreen"
+                                        MaximumTrackColor="Gray"
+                                        ThumbColor="White" />
+                                <Label Text="{Binding MasterVolume, StringFormat='{0:F0}%'}"
+                                       TextColor="LightGray"
+                                       FontSize="12"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
 
-            <!-- Premium Settings -->
-            <Frame BackgroundColor="Gold" 
-                   CornerRadius="15" 
-                   HasShadow="True">
-                <StackLayout Spacing="15">
-                    <Label Text="👑 Premium Features"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="Black" />
-                    
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Remove Ads"
-                               TextColor="Black"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand" />
-                        <Button Text="{Binding PremiumButtonText}"
-                                BackgroundColor="DarkGoldenrod"
+                    <!-- Game Settings -->
+                    <Frame BackgroundColor="DarkGreen" 
+                           CornerRadius="15" 
+                           HasShadow="True">
+                        <StackLayout Spacing="15">
+                            <Label Text="🎮 Game Settings"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+                            
+                            <StackLayout>
+                                <Label Text="Difficulty Level"
+                                       TextColor="White" />
+                                <Picker x:Name="DifficultyPicker"
+                                        SelectedItem="{Binding SelectedDifficulty}"
+                                        TextColor="White"
+                                        BackgroundColor="ForestGreen">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Easy</x:String>
+                                            <x:String>Medium</x:String>
+                                            <x:String>Hard</x:String>
+                                            <x:String>Expert</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </StackLayout>
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Haptic Feedback"
+                                       TextColor="White"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Switch x:Name="HapticFeedbackSwitch"
+                                        IsToggled="{Binding HapticFeedbackEnabled}"
+                                        OnColor="LimeGreen"
+                                        ThumbColor="White" />
+                            </StackLayout>
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Show FPS Counter"
+                                       TextColor="White"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Switch x:Name="ShowFpsSwitch"
+                                        IsToggled="{Binding ShowFpsCounter}"
+                                        OnColor="LimeGreen"
+                                        ThumbColor="White" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Premium Settings -->
+                    <Frame BackgroundColor="Gold" 
+                           CornerRadius="15" 
+                           HasShadow="True">
+                        <StackLayout Spacing="15">
+                            <Label Text="👑 Premium Features"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="Black" />
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Remove Ads"
+                                       TextColor="Black"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Button Text="{Binding PremiumButtonText}"
+                                        BackgroundColor="DarkGoldenrod"
+                                        TextColor="White"
+                                        CornerRadius="10"
+                                        x:Name="PremiumButton"
+                                        Clicked="OnPremiumClicked" />
+                            </StackLayout>
+                            
+                            <Label Text="Unlock all game modes, remove ads, and support development!"
+                                   FontSize="12"
+                                   TextColor="DarkSlateGray" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Action Buttons -->
+                    <StackLayout Spacing="10" Margin="0,20,0,0">
+                        <Button Text="💾 Save Settings"
+                                BackgroundColor="Green"
                                 TextColor="White"
                                 CornerRadius="10"
-                                x:Name="PremiumButton"
-                                Clicked="OnPremiumClicked" />
+                                HorizontalOptions="Fill"
+                                MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
+                                x:Name="SaveButton"
+                                Clicked="OnSaveClicked" />
+                        
+                        <Button Text="🔄 Reset to Defaults"
+                                BackgroundColor="Orange"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HorizontalOptions="Fill"
+                                MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
+                                x:Name="ResetButton"
+                                Clicked="OnResetClicked" />
+                        
+                        <Button Text="⬅️ Back to Menu"
+                                BackgroundColor="Gray"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HorizontalOptions="Fill"
+                                MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
+                                x:Name="BackButton"
+                                Clicked="OnBackClicked" />
                     </StackLayout>
-                    
-                    <Label Text="Unlock all game modes, remove ads, and support development!"
-                           FontSize="12"
-                           TextColor="DarkSlateGray" />
+
                 </StackLayout>
-            </Frame>
-
-            <!-- Action Buttons -->
-            <StackLayout Spacing="10" Margin="0,20,0,0">
-                <Button Text="💾 Save Settings"
-                        BackgroundColor="Green"
-                        TextColor="White"
-                        CornerRadius="10"
-                        x:Name="SaveButton"
-                        Clicked="OnSaveClicked" />
-                
-                <Button Text="🔄 Reset to Defaults"
-                        BackgroundColor="Orange"
-                        TextColor="White"
-                        CornerRadius="10"
-                        x:Name="ResetButton"
-                        Clicked="OnResetClicked" />
-                
-                <Button Text="⬅️ Back to Menu"
-                        BackgroundColor="Gray"
-                        TextColor="White"
-                        CornerRadius="10"
-                        x:Name="BackButton"
-                        Clicked="OnBackClicked" />
-            </StackLayout>
-
-        </StackLayout>
+            </ContentView>
+        </Grid>
     </ScrollView>
 </ContentPage>

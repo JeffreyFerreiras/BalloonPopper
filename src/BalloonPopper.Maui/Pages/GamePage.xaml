@@ -1,49 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="BalloonPopper.Maui.Pages.GamePage"
              Title="Balloon Popper"
-             NavigationPage.HasNavigationBar="False">
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasNavigationBar="False"
+             Padding="{OnIdiom Phone='0,8,0,8', Tablet='0,12,0,12', Desktop='0,12,0,12'}">
 
     <Grid>
-        <!-- Game Canvas (Catherine Bot will implement the actual game UI here) -->
+        <!-- Game Canvas -->
         <Border x:Name="GameCanvas"
                 BackgroundColor="SkyBlue"
                 Stroke="Transparent"
-                Padding="0">
-            
-            <!-- Placeholder content -->
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                <Label Text="🎈"
-                       FontSize="100"
-                       HorizontalOptions="Center" />
-                <Label Text="Game Canvas"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       TextColor="White" />
-                <Label Text="Catherine Bot will implement the actual game here"
-                       FontSize="14"
-                       HorizontalOptions="Center"
-                       TextColor="LightGray"
-                       Margin="0,10,0,0" />
-                
-                <!-- Temporary controls for testing -->
-                <Button Text="🏠 Back to Menu"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        CornerRadius="10"
-                        Margin="0,30,0,0"
-                        x:Name="BackToMenuButton"
-                        Clicked="OnBackToMenuClicked" />
-            </StackLayout>
-        </Border>
+                Padding="0" />
 
         <!-- Game UI Overlay -->
         <StackLayout x:Name="GameUIOverlay"
                      VerticalOptions="Start"
                      HorizontalOptions="Fill"
-                     Padding="20,10"
+                     Padding="{OnIdiom Phone='12,8', Tablet='20,12', Desktop='20,12'}"
                      IsVisible="True">
             
             <!-- Top HUD -->
@@ -85,10 +61,10 @@
                         Text="⏸️"
                         BackgroundColor="Transparent"
                         TextColor="White"
-                        FontSize="20"
+                        FontSize="{OnIdiom Phone=18, Tablet=20, Desktop=20}"
                         HorizontalOptions="End"
-                        WidthRequest="50"
-                        HeightRequest="50"
+                        WidthRequest="{OnIdiom Phone=44, Tablet=56, Desktop=56}"
+                        HeightRequest="{OnIdiom Phone=44, Tablet=56, Desktop=56}"
                         x:Name="PauseButton"
                         Clicked="OnPauseClicked" />
             </Grid>
@@ -101,10 +77,12 @@
                 IsVisible="False">
             <StackLayout VerticalOptions="Center" 
                          HorizontalOptions="Center"
-                         Spacing="20">
+                         Spacing="16"
+                         Padding="{OnIdiom Phone='16', Tablet='20', Desktop='20'}"
+                         MaximumWidthRequest="{OnIdiom Phone=380, Tablet=460, Desktop=500}">
                 
                 <Label Text="⏸️ Game Paused"
-                       FontSize="28"
+                       FontSize="{OnIdiom Phone=24, Tablet=28, Desktop=28}"
                        FontAttributes="Bold"
                        TextColor="White"
                        HorizontalOptions="Center" />
@@ -113,7 +91,8 @@
                         BackgroundColor="Green"
                         TextColor="White"
                         CornerRadius="10"
-                        WidthRequest="200"
+                        HorizontalOptions="Fill"
+                        MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
                         x:Name="ResumeButton"
                         Clicked="OnResumeClicked" />
                 
@@ -121,7 +100,8 @@
                         BackgroundColor="Orange"
                         TextColor="White"
                         CornerRadius="10"
-                        WidthRequest="200"
+                        HorizontalOptions="Fill"
+                        MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
                         x:Name="RestartButton"
                         Clicked="OnRestartClicked" />
                 
@@ -129,7 +109,8 @@
                         BackgroundColor="Red"
                         TextColor="White"
                         CornerRadius="10"
-                        WidthRequest="200"
+                        HorizontalOptions="Fill"
+                        MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
                         x:Name="MainMenuButton"
                         Clicked="OnMainMenuClicked" />
             </StackLayout>

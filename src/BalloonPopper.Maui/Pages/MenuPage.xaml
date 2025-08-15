@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="BalloonPopper.Maui.Pages.MenuPage"
              Title="Balloon Popper"
+             ios:Page.UseSafeArea="True"
+             Padding="{OnIdiom Phone='16,12', Tablet='24,16', Desktop='24,16'}"
              BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
 
     <Grid>
@@ -34,7 +37,8 @@
         <StackLayout Grid.Row="2" 
                      Spacing="20" 
                      VerticalOptions="Center"
-                     HorizontalOptions="Center">
+                     HorizontalOptions="CenterAndExpand"
+                     MaximumWidthRequest="{OnIdiom Phone=380, Tablet=560, Desktop=600}">
             
             <Button Text="🎮 Start Game"
                     x:Name="StartGameButton"
@@ -43,8 +47,8 @@
                     BackgroundColor="Green"
                     TextColor="White"
                     CornerRadius="25"
-                    WidthRequest="250"
-                    HeightRequest="60"
+                    HorizontalOptions="Fill"
+                    MinimumHeightRequest="{OnIdiom Phone=48, Tablet=56, Desktop=56}"
                     Clicked="OnStartGameClicked" />
 
             <Button Text="🏆 Game Modes"
@@ -53,8 +57,8 @@
                     BackgroundColor="Orange"
                     TextColor="White"
                     CornerRadius="25"
-                    WidthRequest="250"
-                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
                     Clicked="OnGameModesClicked" />
 
             <Button Text="⚙️ Settings"
@@ -63,8 +67,8 @@
                     BackgroundColor="Blue"
                     TextColor="White"
                     CornerRadius="25"
-                    WidthRequest="250"
-                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
                     Clicked="OnSettingsClicked" />
 
             <Button Text="ℹ️ About"
@@ -73,8 +77,8 @@
                     BackgroundColor="Purple"
                     TextColor="White"
                     CornerRadius="25"
-                    WidthRequest="250"
-                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    MinimumHeightRequest="{OnIdiom Phone=44, Tablet=52, Desktop=52}"
                     Clicked="OnAboutClicked" />
         </StackLayout>
 

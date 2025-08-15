@@ -9,4 +9,7 @@
     <ProjectReference Include="..\BalloonPopper.Models\BalloonPopper.Models.csproj" />
     <ProjectReference Include="..\BalloonPopper.Services.Abstractions\BalloonPopper.Services.Abstractions.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Adapters\" />
+  </ItemGroup>
 </Project>
