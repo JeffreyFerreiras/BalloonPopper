@@ -24,13 +24,24 @@
 
 ### Brian Bot
 
-* [ ] **Update existing services to implement the new interfaces from `BalloonPopper.Services.Abstractions`**
-* [ ] **Develop core gameplay services (`BalloonSpawner`, `GameEngine`, `DifficultyManager`) implementing interfaces defined by Alice**
-* [ ] Implement balloon pop interactions and scoring logic within the `BalloonInteractionService`
-* [ ] Create special balloon models and their effects in `BalloonPopper.Models`
-* [ ] Build the `GameStateManager` to handle the game's state machine
-* [ ] **Focus solely on the `BalloonPopper.Services` and `BalloonPopper.Models` projects**
-* [ ] **Uncomment and register your services in `MauiProgram.cs` once implemented**
+* [x] **Update existing services to implement the new interfaces from `BalloonPopper.Services.Abstractions`** — adapters present in `AbstractionsImpl`
+* [x] **Develop core gameplay services (`BalloonSpawner`, `GameEngine`, `DifficultyManager`) implementing interfaces defined by Alice** — implementations exist in `src/BalloonPopper.Services`
+* [x] Implement balloon pop interactions and scoring logic within the `BalloonInteractionService` — `BalloonInteractionService` implemented and raises events
+* [ ] Create special balloon models and their effects in `BalloonPopper.Models` — basic `Balloon` model exists; special effects wiring partially implemented, some specific effect types may still need assets/logic
+* [x] Build the `GameStateManager` to handle the game's state machine — `GameStateManager` implemented and publishes relevant events
+* [x] **Focus solely on the `BalloonPopper.Services` and `BalloonPopper.Models` projects** — changes limited to services and models
+* [ ] **Uncomment and register your services in `MauiProgram.cs` once implemented** — DI registration still needs verification / may be commented out in `MauiProgram.cs`
+
+Notes:
+
+* Concrete implementations found:
+  * `BalloonSpawner` (spawning logic, spawn timer, balloon type selection)
+  * `GameEngine` (main loop, balloon lifecycle, event wiring)
+  * `DifficultyManager` (spawn configs and multipliers)
+  * `BalloonInteractionService` (tap handling, bomb explosion, power-ups)
+  * `GameStateManager` (state machine, scoring, power-ups)
+* Adapters/bridges for the abstractions live under `src/BalloonPopper.Services/AbstractionsImpl`
+* Remaining work: special balloon-specific behaviors and assets; confirm and enable DI registrations in `MauiProgram.cs`; create/expand unit tests for these services if not already present.
 
 ### Catherine Bot
 

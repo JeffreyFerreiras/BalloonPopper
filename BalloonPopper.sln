@@ -21,6 +21,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalloonPopper.Models.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalloonPopper.Services.UnitTests", "tests\BalloonPopper.Services.UnitTests\BalloonPopper.Services.UnitTests.csproj", "{601FD1C5-B201-43AD-9B40-A39BF4CE852A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		README.MD = README.MD
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{208BA388-4CEE-2CBF-559C-5607C099C1F8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\MAP.md = docs\MAP.md
+		docs\PLAN.MD = docs\PLAN.MD
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +138,7 @@ Global
 		{1E5A7D8F-9C2B-4A3D-8E7F-2B4C5D6A9E1F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{259DA9A9-CAD9-4653-A37E-6E28E334E5C0} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{601FD1C5-B201-43AD-9B40-A39BF4CE852A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{208BA388-4CEE-2CBF-559C-5607C099C1F8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9DD1567-085E-476E-86F4-EB20ABA10A4C}

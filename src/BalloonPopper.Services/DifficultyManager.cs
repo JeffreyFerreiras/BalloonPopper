@@ -110,8 +110,10 @@ namespace BalloonPopper.Services
             // Apply game state multipliers
             var stateMultiplier = gameState.ScoreMultiplier;
 
-            // Apply combo bonus
-            var comboMultiplier = _difficultyConfig.GetComboMultiplierForCount(gameState.Combo);
+            // Apply combo bonus only if combo meets the configured threshold
+            var comboMultiplier = gameState.Combo >= _difficultyConfig.ComboThreshold
+                ? _difficultyConfig.GetComboMultiplierForCount(gameState.Combo)
+                : 1.0;
 
             var finalScore = (int)(baseScore * levelMultiplier * stateMultiplier * comboMultiplier);
 
