@@ -30,14 +30,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{208BA388-4
 	ProjectSection(SolutionItems) = preProject
 		docs\MAP.md = docs\MAP.md
 		docs\PLAN.MD = docs\PLAN.MD
-		UX.MD = UX.MD
+		docs\UX.MD = docs\UX.MD
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{0D305DB9-F1BD-44C5-83D1-3BDB191BCE18}"
 	ProjectSection(SolutionItems) = preProject
-		assets\balloon.png = assets\balloon.png
-		assets\balloon_red_32x48.png = assets\balloon_red_32x48.png
+		assets\images\balloon.png = assets\images\balloon.png
+		assets\images\balloon_red_32x48.png = assets\images\balloon_red_32x48.png
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sounds", "sounds", "{46662E72-60B1-4C1A-A0E0-62018BE3D8A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -146,6 +150,8 @@ Global
 		{259DA9A9-CAD9-4653-A37E-6E28E334E5C0} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{601FD1C5-B201-43AD-9B40-A39BF4CE852A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{208BA388-4CEE-2CBF-559C-5607C099C1F8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{0D305DB9-F1BD-44C5-83D1-3BDB191BCE18} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{46662E72-60B1-4C1A-A0E0-62018BE3D8A8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9DD1567-085E-476E-86F4-EB20ABA10A4C}
