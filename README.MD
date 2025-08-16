@@ -76,16 +76,51 @@ dotnet test tests/BalloonPopper.Maui.UnitTests/
 ## 📁 Project Structure
 
 ```text
+BalloonPopper.sln
+README.MD
+builds/                         # build artifacts and CI helpers
+docs/                           # design docs, maps and plans
 src/
-├── BalloonPopper.Maui/          # Main application
-│   ├── Data/                    # Data repositories and services
-│   ├── Models/                  # Domain models
-│   ├── PageModels/             # ViewModels (MVVM pattern)
-│   ├── Pages/                  # UI Pages and Controls
-│   ├── Services/               # Business services
-│   └── Utilities/              # Helper classes
+├── BalloonPopper.Maui/         # Main .NET MAUI application (UI + app shell)
+│   ├── App.xaml
+│   ├── App.xaml.cs
+│   ├── AppShell.xaml
+│   ├── AppShell.xaml.cs
+│   ├── GlobalUsings.cs
+│   ├── MauiProgram.cs
+│   ├── PageModels/              # ViewModels (MVVM)
+│   ├── Pages/                   # XAML pages and code-behind
+│   ├── Platforms/               # platform-specific code
+│   ├── Resources/               # images, fonts, styles
+│   ├── Services/                # app-specific services (DI registrations)
+│   └── Utilities/               # helpers and extensions
+├── BalloonPopper.Models/        # Domain models and simple data types
+│   ├── Balloon.cs
+│   ├── BalloonSpawnConfig.cs
+│   ├── DifficultyConfig.cs
+│   ├── GameState.cs
+│   └── Point.cs
+├── BalloonPopper.Services/      # Core game services and engines
+│   ├── BalloonInteractionService.cs
+│   ├── BalloonSpawner.cs
+│   ├── DifficultyManager.cs
+│   ├── GameEngine.cs
+│   ├── GameStateManager.cs
+│   ├── SimpleGameEngine.cs
+│   └── AbstractionsImpl/        # concrete implementations for abstractions
+└── BalloonPopper.Services.Abstractions/  # service interfaces and contracts
+     ├── IAdService.cs
+     ├── IBalloonInteractionService.cs
+     ├── IBalloonSpawner.cs
+     ├── IDifficultyManager.cs
+     ├── IGameEngine.cs
+     └── IGameStateService.cs
+
 tests/
-└── BalloonPopper.Maui.UnitTests/ # Unit tests
+├── BalloonPopper.Maui.UnitTests/
+├── BalloonPopper.Models.UnitTests/
+└── BalloonPopper.Services.UnitTests/
+
 ```
 
 ## 🏗️ Architecture
